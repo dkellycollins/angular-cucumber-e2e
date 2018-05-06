@@ -3,9 +3,6 @@
 
 exports.config = {
   allScriptsTimeout: 11000,
-  specs: [
-    './e2e/**/*.e2e-spec.ts'
-  ],
   capabilities: {
     'browserName': 'chrome',
     // For Travis CI only
@@ -18,9 +15,9 @@ exports.config = {
   baseUrl: 'http://localhost:4200/',
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
-  specs: ['./e2e/**/*.feature'],
   cucumberOpts: {
-    compiler: 'ts:ts-node/register',
-    require: [ './e2e/**/*.ts']
-  }
+    'require-module': 'ts-node/register',
+    require: ['./e2e/**/*.ts']
+  },
+  specs: ['./e2e/**/*.feature'],
 };
