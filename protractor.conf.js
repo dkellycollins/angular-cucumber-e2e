@@ -17,7 +17,8 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   cucumberOpts: {
     'require-module': 'ts-node/register',
-    require: ['./e2e/**/*.ts']
+    require: ['./e2e/**/*.ts'],
+    format: 'progress-bar'
   },
   specs: ['./e2e/**/*.feature'],
 };

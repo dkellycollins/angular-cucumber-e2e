@@ -1,9 +1,17 @@
 Feature: Heros
 
-Scenario: Search by partial name
-Scenario: Search by full name
+Background:
+  Given the application is at the url "/"
+
+Scenario: Navigate to Heroes
+  When I click the heroes link
+  Then the heroes component is present
+
 Scenario: Hero details
-Scenario: Update hero
-Scenario: Delete hero
-Scenario: Add hero
-Scenario: Delete then add hero
+  Given the heroes page is active
+  When I click the link for the hero "15"
+  Then the hero detail component is present
+  And the hero detail component shows the following
+    | id | name      |
+    | 15 | MAGNETA   |
+
