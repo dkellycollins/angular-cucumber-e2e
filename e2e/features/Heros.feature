@@ -15,3 +15,8 @@ Scenario: Hero details
     | id | name      |
     | 15 | MAGNETA   |
 
+Scenario: Create Hero
+  Given the heroes page is active
+  When I enter "Angular" into the input
+  And I click the add button
+  Then the heroes page shows the hero "Angular"

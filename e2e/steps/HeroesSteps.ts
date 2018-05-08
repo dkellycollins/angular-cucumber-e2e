@@ -10,6 +10,7 @@ When(/^I click the link for the hero "([^"]*)"$/, clickHeroLink);
 Then(/^the heroes component is present$/, assertAppHeroesIsActive);
 Then(/^the hero detail component is present$/, assertHeroDetailIsActive);
 Then(/^the hero detail component shows the following$/, assertHeroDetailContent);
+Then(/^the heroes page shows the hero "([^"]*)"$/, assertHeroIsDisplayed);
 
 async function clickAppHeroes(this: ScenarioContext) {
   await this.appHeroesHref.click();
@@ -38,3 +39,10 @@ async function assertHeroDetailContent(this: ScenarioContext, table: TableDefini
 
   assert.deepEqual(expectedHero, actualHero, `Expected hero ${JSON.stringify(expectedHero)}, got ${JSON.stringify(actualHero)}`);
 }
+
+async function assertHeroIsDisplayed(this: ScenarioContext, heroName: string): Promise<void> {
+  const heros = await Hero.fromArray(this.allHeroes);
+  const actualHero = heros.find(h => h.name === heroName);
+  assert.ok(actualHero, `Expected hero ${heroName} to be displayed`);
+}
+
