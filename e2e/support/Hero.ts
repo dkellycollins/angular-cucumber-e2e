@@ -1,4 +1,4 @@
-import { ElementFinder, by } from "protractor";
+import { ElementFinder, by, ElementArrayFinder } from "protractor";
 
 export class Hero {
   id: number;
@@ -37,5 +37,11 @@ export class Hero {
         id: +_id.substr(_id.indexOf(' ') + 1),
         name: _name.substr(0, _name.lastIndexOf(' '))
     };
+  }
+
+  static async fromArray(allHeroes: ElementArrayFinder): Promise<Hero[]> {
+    let promisedHeroes = await allHeroes.map(Hero.fromLi);
+    // The cast is necessary to get around issuing with the signature of Promise.all()
+    return <Promise<any>> Promise.all(promisedHeroes);
   }
 }
